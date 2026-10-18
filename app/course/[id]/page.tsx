@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { notFound } from "next/navigation";
 
 export const dynamicParams = false;
 
