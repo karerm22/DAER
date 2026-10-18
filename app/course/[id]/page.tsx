@@ -1,6 +1,13 @@
-import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const supabase = await createClient();
+  const { data: courses } = await supabase.from("courses").select("id");
+  return (courses || []).map((course) => ({ id: course.id }));
+}
 
 interface PageProps {
   params: Promise<{
